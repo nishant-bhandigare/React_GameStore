@@ -23,7 +23,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('http://localhost:8000/api/register', {
+            await axios.post('/api/register', {
                 name: getFormData.Name, uname: getFormData.username, pass: getFormData.password, age: getFormData.age, mobno: getFormData.mobno
             })
             toast.success('Registered Successfully!', {

@@ -23,7 +23,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:8000/api/get-user', { uname: getLoginData.username, password: getLoginData.password })
+            const res = await axios.post('/api/get-user', { uname: getLoginData.username, password: getLoginData.password })
             if (res.data) {
                 navigate(`/mainpage`)
                 localStorage.setItem('user', res.data[0].id)

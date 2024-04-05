@@ -24,7 +24,7 @@ function CompaitbilityGamesPage() {
     }
     const fetchGamesBySpecifications = async (event) => {
         event.preventDefault()
-        const res = await axios.post("http://localhost:8000/api/get-compatible-games", {
+        const res = await axios.post("/api/get-compatible-games", {
             os: getFormData.os,
             cpu: getFormData.cpu,
             gpu: getFormData.gpu,
@@ -36,7 +36,7 @@ function CompaitbilityGamesPage() {
     }
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get("http://localhost:8000/user/" + localStorage.getItem("user"))
+            const res = await axios.get("/user/" + localStorage.getItem("user"))
             setUser(res.data[0].username)
         }
         fetchUser()

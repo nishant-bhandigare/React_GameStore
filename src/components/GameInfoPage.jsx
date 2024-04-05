@@ -22,7 +22,7 @@ function GameInfoPage() {
 
     const fetchSearchResults = async () => {
         try {
-            const res = await axios.post('http://localhost:8000/api/search', { searchQuery: getSearchBoxValue.searchBox });
+            const res = await axios.post('/api/search', { searchQuery: getSearchBoxValue.searchBox });
             const results = res.data.map((element, index) => ({ key: index, value: element.title }));
             setSearchResults(results);
             // setLoading(false)
@@ -33,7 +33,7 @@ function GameInfoPage() {
     }
     const fetchGameData = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/gameinfopage/${document.URL.split('/')[4]}`)
+            const res = await axios.get(`/api/gameinfopage/${document.URL.split('/')[4]}`)
             setGameData(res.data[0])
         } catch (error) { console.log(error) }
     }
@@ -47,7 +47,7 @@ function GameInfoPage() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/user/${localStorage.getItem('user')}`)
+                const res = await axios.get(`/user/${localStorage.getItem('user')}`)
                 setUser(res.data[0].username)
             } catch (error) {
                 console.log(error)

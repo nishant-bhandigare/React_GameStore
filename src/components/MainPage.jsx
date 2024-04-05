@@ -35,14 +35,14 @@ function MainPage() {
             let games = []
             try {
                 if (getcategory.includes('Under')) {
-                    const res = await axios.get('http://localhost:8000/api/get-games/category/under-18-games')
+                    const res = await axios.get('/api/get-games/category/under-18-games')
                     res.data.forEach(game => {
                         games.push(game)
                     });
                     setLoading(false)
                 }
                 else {
-                    const res = await axios.post('http://localhost:8000/api/get-games/category', { category: getcategory.replaceAll(" ", "-") })
+                    const res = await axios.post('/api/get-games/category', { category: getcategory.replaceAll(" ", "-") })
                     res.data.forEach(game => {
                         games.push(game)
                     });
@@ -64,7 +64,7 @@ function MainPage() {
 
     const fetchSearchResults = async () => {
         try {
-            const res = await axios.post('http://localhost:8000/api/search', { searchQuery: getSearchBoxValue.searchBox });
+            const res = await axios.post('/api/search', { searchQuery: getSearchBoxValue.searchBox });
             const results = res.data.map((element, index) => ({ key: index, value: element.title }));
             setSearchResults(results);
             setLoading(false)
@@ -78,7 +78,7 @@ function MainPage() {
         let games = []
         const fetchAllGames = async () => {
             try {
-                const res = await axios.get("http://localhost:8000/api/get-all-games")
+                const res = await axios.get("/api/get-all-games")
                 res.data.forEach(game => {
                     games.push(game)
                 });
@@ -89,7 +89,7 @@ function MainPage() {
         }
         const fetchUser = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/user/${localStorage.getItem('user')}`)
+                const res = await axios.get(`/user/${localStorage.getItem('user')}`)
                 setUser(res.data[0].username)
             } catch (error) {
                 console.log(error)
